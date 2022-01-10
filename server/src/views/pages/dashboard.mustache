@@ -1,0 +1,40 @@
+{{>partials/header}}
+<div class="container">
+  <h1>Dashboard</h1>
+  <table class="table table-hover">
+    <tr>
+      <th class="col">Rental ID</th>
+      <th class="col">Name</th>
+      <th class="col">Address</th>
+      <th class="col">Document</th>
+      <th class="col">Date Start</th>
+      <th class="col">Date End</th>
+      <th class="col">Total $</th>
+      <th class="col">Paid</th>
+      <th class="col">Equipment</th>
+      <th class="col"></th>
+    </tr>
+    {{#rentals}}
+      <tr>
+        <td style="text-align:center;">{{id}}</td>
+        <td>{{name}}</td>
+        <td>{{address}}</td>
+        <td>{{document}}</td>
+        <td>{{date_start}}</td>
+        <td>{{date_end}}</td>
+        <td style="text-align:center;">{{total_price}}</td>
+        {{#paid}}<td  class="bi bi-check-lg" style="text-shadow: 1px 1px 1px #c3c3c3; font-size: 16px; text-align:center; color: green;"></td>{{/paid}}
+        {{^paid}}<td  class= "bi bi-x-lg" style="text-shadow: 1px 1px 1px #c3c3c3; font-weight: bold; font-size: 14px; text-align:center; color: red;"></td>{{/paid}}
+        <td id="equipment" name="equipment" style="text-align:center;">{{equipment}}</td>
+        {{^finalizado}}
+        <td><a class="btn btn-primary" href="/rental/updatepage/{{id}}" style="color:white; border: none; background-color: transparent;">+ info</a></td>
+        {{/finalizado}}
+        {{#finalizado}}
+        <td style="font-weight: bold; color:red; text-shadow: 1px 1px 1px #262626">Rental Closed</td>
+        {{/finalizado}}
+      </tr>
+    {{/rentals}}
+  </table>
+  
+</div>
+

@@ -1,0 +1,64 @@
+{{>partials/header}}
+
+<div class="container"> 
+  <!--{{#banner}}
+    <h1>{{title}}</h1>
+  {{/banner}}-->
+  <div class="rent-area">
+  {{#rent}}
+    <form class="form-input" method="GET" action="/rentalfinish/{{id}}">
+      <label class="rent-label" for="id">Rental #{{id}}</label>
+      <label class="rent-label detail" for="customer">Name: <span class="rent-detail">{{name}}</span></label>     
+      <label class="rent-label detail" for="document">Document: <span class="rent-detail"></span></label>
+      <input class="document" id="document" name="document" type="file" />
+      <label class="rent-label detail" for="adress">Address: <span class="rent-detail">{{address}}</span></label>
+      <label class="rent-label detail" for="date-start" >Date Start: <span class="rent-detail">{{date_start}}</span></label>
+      <label class="rent-label detail" for="date-end">Date End: <span class="rent-detail">{{date_end}}</span></label>
+      {{#paid}}
+      <div class="radio-area">
+        <label class="rent-label detail" for="paid">Paid:</label>
+        <span class="paid-text">Rental Paid</span>
+      </div>
+      {{/paid}}
+      {{^paid}}
+      <div class="paid">
+        <label class="rent-label detail" for="paid">Paid:</label>
+        <input class="input-area--paid" id="paid" name="paid" type="radio" value='{{paid}}' />
+      </div>
+      {{/paid}}
+      <div class="radio-area">
+        <label class="rent-label detail" for="finalizado">Terminated:</label>
+        <input class="input-area--terminated" id="finalizado" name="finalizado" type="radio" value='{{finalizado}}' />
+      </div>
+    {{#surfboard}}
+      <label class="rent-label detail" for="info">Info:</label>
+      <textarea class="input-area info" name="info" id="info">{{info}}</textarea>
+    {{#paid}}
+      <input type="submit" class="btn-submit" value="Finish Rental"/>
+    {{/paid}}
+    {{#paid}}
+      <input type="submit" class="btn-submit" value="Finish Rental" disabled/>
+    {{/paid}}
+    </form>
+    
+    <div class="equipment-area">
+      
+        <div class="equipment-area--img">
+            <img class="equipment-img" src="/images/{{image}}"/>
+        </div>
+        <div class="equipment-area--text">
+          <div class="equipment--id">id: #{{id}}</div>
+          <div class="equipment--brand">Brand: {{brand}}</div>
+          <div class="equipment--size">Size: {{size}}</div>
+          <div class="equipment--info">Info: {{info}}</div>
+        </div>
+      
+    </div>
+    {{/surfboard}}
+  </div>
+  {{#id}}
+  <h1>id: {{id}}</h1>
+  {{/id}}
+</div>
+  {{/rent}}
+{{>partials/footer}}
