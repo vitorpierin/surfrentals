@@ -1,15 +1,14 @@
+import axios from 'axios';
+
+ const api = axios.create({
+  baseURL: 'http://localhost:4000',
+  headers: {
+    'Content-Type': 'application/json' 
+  }
+});
 
 
-
-
-export const api = {
-  getAllSurfboards: async () => {
-    let response = await fetch('http://localhost:4000/surfboards');
-    let json = await response.json();
-    let result = Object.entries(json);
-    let finalResult = result[0][1];
-    console.log(result[0][1]);
-    return finalResult;
+ 
     
 
     /*try {
@@ -24,5 +23,4 @@ export const api = {
     /*let response = await fetch('http://localhost:4000/rentals/');
     let json = await response.json();
     return json;*/
-  }
-}
+export default api;

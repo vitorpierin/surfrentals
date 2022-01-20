@@ -10,10 +10,11 @@ export const surfboards = async (req: Request, res: Response) => {
 
 export const surfboard = async (req: Request, res: Response) => {
   let id: string = req.params.id as string;
-   
   let surfboard = await Surfboard.findByPk(id);
-
+  console.log(surfboard)
+  console.log('deu certo');
   if(surfboard){
+      console.log('deu certo');
       res.json({surfboard});
   }else{
       res.json({error: 'Dados não encontrados'})

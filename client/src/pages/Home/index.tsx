@@ -1,32 +1,39 @@
 import * as C from './style';
-import {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Surfboard} from '../../types/Surfboard';
-import { api } from '../../api';
+import api  from '../../api';
+import {Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {setId, setBrand, setSize, setAvailable, setImage, setInfo} from '../../redux/reducers/surfboardReducer';
+
+
 
 const  Home = () => {
+  const dispatch = useDispatch();
   const [surfboards, setSurfboards] =useState<Surfboard[]>([]);
-
-
-
-  const loadSurfboard = async () => {
-    
+ 
+ 
+  useEffect(()=>{
+    getAllSurfboards();
+  }, [])
+  
+  const getAllSurfboards = async () => {
     try {
-      let json = await api.getAllSurfboards() as any;
-      setSurfboards(json);
-      
-      
+      let response = await api.get('/surfboards');
+      let json = await response.data;
+      setSurfboards(json.list);
     } catch (error) {
       console.log(error);
     }
-    console.log(surfboards);
+    
   }
-
+ 
   return(
+    <>
     <C.HomeArea>
       <div className='Container'>
         <div className='title-area'>
-          Surfboards Available: {surfboards.length}
-          <button onClick={loadSurfboard}>Load Surfboards</button>
+          <h1>Surfboards Available</h1>
         </div>
           <div className="content-area" >
             {surfboards && surfboards.map((item, index) => (
@@ -39,10 +46,15 @@ const  Home = () => {
                     <div className="surfboard--id">id: #{item.id}</div>
                     <div className="surfboard--brand">Brand: {item.brand}</div>
                     <div className="surfboard--size">Size: {item.size}</div>
-                    <div className="surfboard--size">Size: {item.image}</div>
-                    <form method="GET" action="">          
-                      <input type="submit" className="btn-rent" value="Rent"/>
-                    </form>
+                    <Link to={`/newrent/${item.id}`}>
+                      <button onClick={() => {
+                        dispatch(setId(item.id)); 
+                        dispatch(setBrand(item.brand)); 
+                        dispatch(setSize(item.size)); 
+                        dispatch(setAvailable(item.available)); 
+                        dispatch(setImage(item.image)); 
+                        dispatch(setInfo(item.info))
+                        }} className="btn-rent">Rent</button></Link>
                   </div>
                 </div>
               </div>
@@ -50,6 +62,7 @@ const  Home = () => {
           </div>
         </div>
     </C.HomeArea>
+    </>
   );
 }
 

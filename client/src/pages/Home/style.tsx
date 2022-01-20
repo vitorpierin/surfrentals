@@ -1,6 +1,18 @@
 import styled from 'styled-components';
 
 export const HomeArea = styled.div`
+  .title-area{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #262626;
+    font-size: 20px;
+    text-shadow: 0px 0px 2px #c3c3c3;
+    letter-spacing: 8px;
+    h1{
+      font-size: 30px;
+    }
+  }
   .content-area{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
