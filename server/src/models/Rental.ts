@@ -43,12 +43,14 @@ export const Rental = sequelize.define<RentalInstance>('Rental', {
     type: DataTypes.INTEGER
   },
   paid: {
-    type: DataTypes.BOOLEAN
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
   },
   document: {
     type: DataTypes.STRING
   }
 }, {
   tableName: 'rentals',
-  timestamps: false
+  timestamps: false,
+  omitNull: true
 })

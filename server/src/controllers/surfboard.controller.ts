@@ -2,25 +2,31 @@ import { Request, Response } from 'express';
 import { Surfboard } from '../models/Surfboard';
 
 export const surfboards = async (req: Request, res: Response) => {
-  const list = await Surfboard.findAll({
-    raw:true
-  });
-  res.json({list});
+  try {
+    const list = await Surfboard.findAll({
+      raw:true
+    });
+    res.json({list});
+  } catch (error) {
+      console.log(error);
+  }
+ 
 }
 
 export const surfboard = async (req: Request, res: Response) => {
-  let id: string = req.params.id as string;
-  let surfboard = await Surfboard.findByPk(id);
-  console.log(surfboard)
-  console.log('deu certo');
-  if(surfboard){
-      console.log('deu certo');
+  try {
+    let id: string = req.params.id as string;
+    let surfboard = await Surfboard.findByPk(id);
+    console.log(surfboard)
+    if(surfboard){
+      console.log(surfboard);
       res.json({surfboard});
-  }else{
-      res.json({error: 'Dados não encontrados'})
-     }
-}
+    } 
+  }catch (error) {
+      console.log(error);
+  }
 
+}
 /*export const update = async (req: Request, res: Response) =>{
   let id: string = req.params.id as string;
    

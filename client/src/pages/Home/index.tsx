@@ -1,7 +1,7 @@
 import * as C from './style';
 import React, {useState, useEffect} from 'react';
 import {Surfboard} from '../../types/Surfboard';
-import api  from '../../api';
+import {api}  from '../../api';
 import {Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {setId, setBrand, setSize, setAvailable, setImage, setInfo} from '../../redux/reducers/surfboardReducer';
@@ -14,13 +14,12 @@ const  Home = () => {
  
  
   useEffect(()=>{
-    getAllSurfboards();
+    handleAllSurfboards();
   }, [])
   
-  const getAllSurfboards = async () => {
+  const handleAllSurfboards = async () => {
     try {
-      let response = await api.get('/surfboards');
-      let json = await response.data;
+      let json = await api.getAllSurfboards();
       setSurfboards(json.list);
     } catch (error) {
       console.log(error);

@@ -21,13 +21,21 @@ export const home = async (req: Request, res: Response) => {
 }
 
 export const all = async (req: Request, res: Response) => {
-    let paid: string = req.query.paid as string;
-    const rentals = await Rental.findAll();
-    res.render('pages/dashboard',{ 
-        rentals,
-        paid
-})
-   //res.json({list});
+    try {
+        let paid: string = req.query.paid as string;
+        const rentals = await Rental.findAll({
+            raw: true
+        });
+        res.json({rentals});
+        /*res.render('pages/dashboard',{ 
+            rentals,
+            paid
+    })*/
+    } catch (error) {
+        console.log(error);
+    }
+   
+   //res.json({rentals});
 }
 export const one = async (req: Request, res: Response) => {
     let id: string = req.params.id;
@@ -41,31 +49,39 @@ export const one = async (req: Request, res: Response) => {
        }
  }
 export const add = async (req: Request, res: Response) => {
-    
-    let id: string = req.body.equipment as string;
-    let surfboard = await Surfboard.findByPk(id);
-   
-    if(req.body.name){
-    let newRental = await Rental.create({
-        name: req.body.name,
-        address: req.body.address,
-        equipment: req.body.equipment,
-        date_start: req.body.date_start,
-        date_end: req.body.date_end,
-        total_price: req.body.total_price,
-        info: req.body.info,
-        document: req.body.document
+    console.log(req.body);
+    try{
+        let name: string = req.body.name as string;
+        console.log(name);
+        
+        
+        let newRental = await Rental.create({
+            name: req.body.name,
+            address: req.body.address,
+            finalizado: req.body.finalizado,
+            equipment: req.body.equipment,
+            date_start: req.body.date_start,
+            date_end: req.body.date_end,
+            total_price: req.body.total_price,
+            paid: req.body.paid,
+            info: req.body.info,
+            document: req.body.document
+            
 
     });
+    let id: string = req.body.equipment as string;
+    let surfboard = await Surfboard.findByPk(id);
+    console.log(id);
     if(surfboard){
         surfboard.available = false;
         await surfboard.save();
-     }
-    //res.status(201).json({item: newRental});
-   }else{
-    res.json({error: 'Dados não enviados!'})
+        
+     }    
+    res.status(201).json({item: newRental});
+   }catch(error){
+    res.json({error});
    }
-   res.redirect('/');
+   //res.redirect('/');
 }
 export const update = async (req: Request, res: Response) => {
    let id: string = req.params.id;

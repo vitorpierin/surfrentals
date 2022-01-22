@@ -74,6 +74,9 @@ export const Form = styled.fieldset`
     border-radius: 20px;
     background-color: rgba(0,212,255,0.2);
 }
+  .input-radio{
+    margin-top: 10px;
+}
 `;
 
 export const InputArea = styled.input`
