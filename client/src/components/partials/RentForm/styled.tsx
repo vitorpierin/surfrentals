@@ -65,7 +65,7 @@ export const Form = styled.fieldset`
   .btn-submit{
     width: 160px;
     height: 35px;
-    margin-left: 50px;
+    margin-left: 220px;
     align-self: center;
     margin-top: 30px;
     background-color: transparent;
@@ -76,6 +76,9 @@ export const Form = styled.fieldset`
 }
   .input-radio{
     margin-top: 10px;
+}
+  .radio-label{
+    margin-left: 5px;
 }
 `;
 

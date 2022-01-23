@@ -11,7 +11,7 @@ import {setId, setBrand, setSize, setAvailable, setImage, setInfo} from '../../r
 const  Home = () => {
   const dispatch = useDispatch();
   const [surfboards, setSurfboards] =useState<Surfboard[]>([]);
- 
+
  
   useEffect(()=>{
     handleAllSurfboards();
@@ -45,7 +45,7 @@ const  Home = () => {
                     <div className="surfboard--id">id: #{item.id}</div>
                     <div className="surfboard--brand">Brand: {item.brand}</div>
                     <div className="surfboard--size">Size: {item.size}</div>
-                    <Link to={`/newrent/${item.id}`}>
+                    {item.available ? <Link to={`/newrent/${item.id}`}>
                       <button onClick={() => {
                         dispatch(setId(item.id)); 
                         dispatch(setBrand(item.brand)); 
@@ -53,7 +53,7 @@ const  Home = () => {
                         dispatch(setAvailable(item.available)); 
                         dispatch(setImage(item.image)); 
                         dispatch(setInfo(item.info))
-                        }} className="btn-rent">Rent</button></Link>
+                        }} disabled={item.available ? false : true} className="btn-rent">{item.available ? 'Rent' : 'not available'}</button></Link> : <p className='not-available'>not available</p>}
                   </div>
                 </div>
               </div>

@@ -101,13 +101,13 @@ const RentForm = ({onAdd}: Props) => {
           <C.InputArea className="date" id="date-end" value={date_end} onChange={handleDateEndChange} name="date_end" type="date" />
         </div>
       </div>
-      <div className="custom-control custom-radio input">
+      <div className="custom-control custom-radio input-radio">
         <input className="custom-control-input" onChange={handlePaidChange} id="paid" name="paid" type="checkbox" checked={paid} />
-        <label className="custom-control-label" >Paid</label>
+        <label className="custom-control-label radio-label" >Paid</label>
       </div>
       <label className="rent-label" >Info:</label>
       <textarea className="info" name="info" id="info" value={info} onChange={handleInfoChange}></textarea>
-      <button className="btn-submit" onClick={handleConfirmClick}>Confirm</button>
+      <Link to='/'><button className="btn-submit" onClick={handleConfirmClick}>Confirm</button></Link>
   </C.Form>
   </>
   );

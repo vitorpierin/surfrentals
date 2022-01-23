@@ -8,15 +8,15 @@ export const HeaderArea = styled.div`
   }
 
   .logo{
-    
-    a{
+    text-decoration: none;
+    div{
       font-size: 35px;
       background:linear-gradient(10deg, rgba(2,0,36,1) 0%, rgba(0,0,0,0.9528186274509804) 0%, rgba(0,212,255,1) 100%);
       background-size: 100%;
       background-clip: text;
       color: transparent;
       font-weight: bold; 
-      text-decoration: none;
+      
     }
     
   }

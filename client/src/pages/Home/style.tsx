@@ -53,4 +53,8 @@ export const HomeArea = styled.div`
     color: #fff;
     padding:5px 10px;
 }
+.not-available{
+    font-size: 20px;
+    font-weight: bold;
+}
 `;
