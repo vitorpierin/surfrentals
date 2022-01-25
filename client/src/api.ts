@@ -38,9 +38,23 @@ export const api = {
   },
   getAllSurfboards: async () => {
     let response = await http.get('/surfboards');
+    console.log(response.data);
     return response.data;
+  },
+  getAllRentals: async () => {
+    try {
+      let response = await http.get('/rentals');
+      /*let json = Object.entries(response.data);
+      let json2 = json[0];*/
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+   
   }
 }
+
 
 
  

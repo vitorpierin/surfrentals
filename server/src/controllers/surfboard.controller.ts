@@ -4,7 +4,11 @@ import { Surfboard } from '../models/Surfboard';
 export const surfboards = async (req: Request, res: Response) => {
   try {
     const list = await Surfboard.findAll({
-      raw:true
+      raw:true,
+      order: [
+        ['available', 'DESC'],
+        ['id', 'ASC']
+     ]
     });
     res.json({list});
   } catch (error) {

@@ -6,7 +6,7 @@ export const home = async (req: Request, res: Response) => {
     let available: string = req.query.available as string;
     let list = await Surfboard.findAll({
         order: [
-            ['available', 'DESC']
+            ['available', 'ASC']
          ]
     });
 
@@ -22,10 +22,11 @@ export const home = async (req: Request, res: Response) => {
 
 export const all = async (req: Request, res: Response) => {
     try {
-        let paid: string = req.query.paid as string;
+        /*let paid: string = req.query.paid as string;*/
         const rentals = await Rental.findAll({
-            raw: true
+            raw:true
         });
+        console.log(rentals);
         res.json({rentals});
         /*res.render('pages/dashboard',{ 
             rentals,

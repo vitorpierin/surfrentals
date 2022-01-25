@@ -20,6 +20,7 @@ const  Home = () => {
   const handleAllSurfboards = async () => {
     try {
       let json = await api.getAllSurfboards();
+      console.log(json.list);
       setSurfboards(json.list);
     } catch (error) {
       console.log(error);
