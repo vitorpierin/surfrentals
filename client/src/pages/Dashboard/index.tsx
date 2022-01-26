@@ -8,6 +8,8 @@ import Modal from '../../components/partials/Modal';
  const Dashboard = () => {
   const [rentals, setRentals] = useState<Rent[]>([]);
   const [modalVisible, setModalVisible] = useState(false); 
+  const [id, setId] = useState('');
+  const [equipmentId, setEquipmentId] = useState('');
 
    useEffect(()=>{
     handleAllRentals();
@@ -23,12 +25,15 @@ import Modal from '../../components/partials/Modal';
       console.log(error);
     }
   }
- 
-  const handleModal = () => {
+  
+
+  /*const handleModal = (id: any) => {
     setModalVisible(true);
-  }
+    console.log(id);
+    setId(id);
+  }*/
 
-
+ 
   console.log(rentals);
   return(
     <>
@@ -68,12 +73,20 @@ import Modal from '../../components/partials/Modal';
                   
                   <td id="equipment"  /*style="text-align:center;"*/>{item.equipment}</td>
                 
-                  <td><button className="btn-info" onClick={handleModal} /*style="color:white; border: none; background-color: transparent;"*/>+ info</button></td>
+                  <td><button className="btn-info" onClick={() => {
+                    let newid: any = item.id;
+                    let equipment: any = item.equipment;
+                    console.log(item.id);
+                    setModalVisible(true);
+                    console.log(newid);
+                    setId(newid);
+                    setEquipmentId(equipment);
+                  }} /*style="color:white; border: none; background-color: transparent;"*/>+ info</button></td>
                   {item.finalizado ?  <td>Rental Closed</td> : '' }
                  
-                
+                  
                 </tr>
-                
+               
             </tbody>
             
           ))}
@@ -81,13 +94,10 @@ import Modal from '../../components/partials/Modal';
         </C.TableArea >
       </div>
       {modalVisible ? 
-      <> 
-        <Modal visible={modalVisible} setVisible={setModalVisible}/> 
-       
-        
-      </>
-      : ''}
-     
+        <> 
+          <Modal visible={modalVisible} setVisible={setModalVisible} id={id} equipment={equipmentId}/>         
+        </>
+      : ''}      
     </>
   );
 }

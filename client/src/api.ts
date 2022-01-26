@@ -52,6 +52,24 @@ export const api = {
       console.log(error);
     }
    
+  },
+  getRent: async (id: any) => {
+    try {
+      let response = await http.get(`/rental/${id}`)
+      console.log(id);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  getSurfboard: async (id: any) => {
+    try {
+      let response = await http.get(`/surfboards/${id}`);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 

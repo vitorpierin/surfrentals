@@ -88,7 +88,7 @@ const RentForm = ({onAdd}: Props) => {
       <label className="rent-label" >Document:</label>
       <C.InputArea className="document" value={document} onChange={handleDocumentChange} id="document" name="document" type="file" />
       <label className="rent-label" >Address:</label>
-      <C.InputArea className="input-area" value={address} onChange={handleAddressChange} id="adress" name="address" type="text" />
+      <C.InputArea className="input-area" value={address} onChange={handleAddressChange} id="address" name="address" type="text" />
       <label className="rent-label" >Equipment: </label>
       <C.InputArea className="input-area" value={`#${equipment}`} id="equipment" name="equipment" type="text" />
       <div className="date-area">  
