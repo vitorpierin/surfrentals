@@ -70,6 +70,24 @@ export const api = {
     } catch (error) {
       console.log(error);
     }
+  },
+  updateRent: async (id:string, paid: any, finalizado:any) => {
+  
+    try {
+      console.log(paid, finalizado);
+      console.log(`ID:${id}`);
+      console.log(paid);
+      console.log(finalizado);
+      let response = await http.put(`/rental/${id}`, {
+       paid,
+       finalizado 
+      });
+      console.log(`Response data${response.data}`);
+      return response.data;
+    } catch (error) {
+      console.log('nao deu certo');
+      console.log(error);
+    }
   }
 }
 

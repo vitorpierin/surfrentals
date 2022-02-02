@@ -51,6 +51,7 @@ const RentForm = ({onAdd}: Props) => {
   const handleConfirmClick =  () => {
     console.log(name, address, paid)
     if( name ){
+      
       onAdd(name, address, equipment, date_start, date_end, document, paid);
     }else{
       alert('Preencha os campos');

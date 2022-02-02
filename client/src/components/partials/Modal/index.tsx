@@ -1,20 +1,31 @@
 import * as C from './styled';
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { api } from '../../../api';
 import { Rent } from '../../../types/Rent';
 import { Surfboard } from '../../../types/Surfboard';
-
 
 type Props = {
     visible:boolean,
     setVisible:React.Dispatch<React.SetStateAction<any>>,
     id: string,
-    equipment: string
+    equipment: string,
+    onAdd: (
+      paid:any,
+      finalizado:any
+    ) => void;
 }
 const Modal = (props: Props) => {
   const [rent, setRent] = useState<Rent>();
-  const [equipmentId, setEquipmentId] = useState(rent?.equipment);
+  const [paid, setPaid] =useState(rent?.paid);
+  const [finalizado, setFinalizado] =useState(rent?.finalizado);
+  const [id, setId] =useState(props.id);
+
+
   const [surfboard, setSurfboard] =useState<Surfboard>();
+  console.log('--------------------');
+  console.log(paid);
+  console.log(finalizado);
+  console.log('--------------------');
 
   console.log(props.id);
   useEffect(()=>{
@@ -48,13 +59,30 @@ const Modal = (props: Props) => {
   const handleModalClose = () => {
    props.setVisible(false);
   }
-
-  const handlePaidChange = () => {
-
+  const handlePaidChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let newpaid = e.target.checked;
+    console.log(newpaid);
+    console.log(`id number: ${props.id}`)
+    setPaid(newpaid);
+   
+    
+    console.log(paid);
   }
 
-  const handleFinalizado = () => {
-
+  const handleFinalizadoChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let newfinalizado = e.target.checked;
+    setFinalizado(newfinalizado);
+    console.log(finalizado);
+  }
+  const handleConfirmClick = () => {
+    
+    if(paid || finalizado){
+      
+      props.onAdd(paid, finalizado)
+    }else{
+      alert('Nenhum alteração para fazer')
+    }
+   /**/
   }
 
   return(
@@ -97,7 +125,7 @@ const Modal = (props: Props) => {
           '' : 
           <div className="item-rent">
             <label>Close Rent: </label>
-            <input className="custom-control-input" onChange={handleFinalizado} id="paid" name="paid" type="checkbox"/>
+            <input className="custom-control-input" onChange={handleFinalizadoChange} id="finalizado" name="finalizado" type="checkbox"/>
           </div>}
         
         </C.InfoAreaRent>
@@ -116,7 +144,7 @@ const Modal = (props: Props) => {
         </C.InfoAreaSurfboard>
         </C.InfoArea> 
         <C.Buttons>
-          {rent?.finalizado ? '' : <C.BtnModalConfirm>Confirm</C.BtnModalConfirm>}
+          {rent?.finalizado ? '' : <C.BtnModalConfirm onClick={handleConfirmClick}>Confirm</C.BtnModalConfirm>}
           <C.BtnModalClose onClick={handleModalClose}>Fechar</C.BtnModalClose>
         </C.Buttons> 
         

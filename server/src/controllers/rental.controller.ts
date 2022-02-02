@@ -85,59 +85,53 @@ export const add = async (req: Request, res: Response) => {
    //res.redirect('/');
 }
 export const update = async (req: Request, res: Response) => {
-   let id: string = req.params.id;
    
-   let rent = await Rental.findByPk(id);
-
-   if(rent){
-        if(req.body.name){
-            rent.name = req.body.name;
-        }
-        if(req.body.address){
-            rent.address = req.body.address;
-        }
-        if(req.body.date_start){
-            rent.date_start = req.body.date_start;
-        }
-        if(req.body.date_end){
-            rent.date_end = req.body.date_end;
-        }
-        if(req.body.total_price){
-            rent.total_price = req.body.total_price;
-        }
-        if(req.body.document){
-            rent.document = req.body.document;
-        }
-        if(req.body.finalizado){
-           switch(req.body.finalizado.toLowerCase()){
-                case 'true':
-                case '1':
-                    rent.finalizado = true;
-                    break;
-                case 'false':
-                case '0':
-                    rent.finalizado = false;
-                    break;
-           }
-        }
-        if(req.body.paid){
-            switch(req.body.paid.toLowerCase()){
-                case 'true':
-                case '1':
-                    rent.paid = true;
-                    break;
-                case 'false':
-                case '0':
-                    rent.paid = false;
-                    break;
-           }
-        }
-
-        await rent.save();
-        res.redirect("/");
-   }else{
-       res.json({error: 'Item não encontrado!'});
+   try {
+    let id: string = req.params.id;
+    console.log(`Esse é o reqbody: ${req.body.paid} / ${req.body.paid}`);
+    
+    let rent = await Rental.findByPk(id);
+ 
+ 
+    
+ 
+    if(rent){
+         
+         if(req.body.name){
+             rent.name = req.body.name;
+         }
+         if(req.body.address){
+             rent.address = req.body.address;
+         }
+         if(req.body.date_start){
+             rent.date_start = req.body.date_start;
+         }
+         if(req.body.date_end){
+             rent.date_end = req.body.date_end;
+         }
+         if(req.body.total_price){
+             rent.total_price = req.body.total_price;
+         }
+         if(req.body.document){
+             rent.document = req.body.document;
+         }
+         if(req.body.finalizado){
+           rent.finalizado = true; 
+         }
+         if(req.body.paid){
+            rent.paid = true;
+         }
+         
+         await rent.save();
+         console.log(rent.paid);
+         res.status(201).json({rent})
+        
+    }
+   } catch (error) {
+       console.log(`AQUI ESTÁ O ERRO!!! ${error}`)
+        res.json({error});
    }
+   
 }
 export const remove = async (req: Request, res: Response) => {
     let id: string = req.params.id;

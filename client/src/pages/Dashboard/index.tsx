@@ -10,6 +10,8 @@ import Modal from '../../components/partials/Modal';
   const [modalVisible, setModalVisible] = useState(false); 
   const [id, setId] = useState('');
   const [equipmentId, setEquipmentId] = useState('');
+  const [paid, setPaid] = useState('');
+  const [finalizado, setFinalizado] = useState('');
 
    useEffect(()=>{
     handleAllRentals();
@@ -23,6 +25,21 @@ import Modal from '../../components/partials/Modal';
       
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  const handleUpdateRent = async (paid:boolean, finalizado:boolean) => {
+    try {
+      let json = await api.updateRent(id, paid, finalizado);
+      console.log(json);
+      if(json){
+        setModalVisible(false);
+        handleAllRentals();
+      }
+    } catch (error) {
+      console.log('não atualizouuuuuu!');
+      console.log(error);
+      
     }
   }
   
@@ -76,6 +93,7 @@ import Modal from '../../components/partials/Modal';
                   <td><button className="btn-info" onClick={() => {
                     let newid: any = item.id;
                     let equipment: any = item.equipment;
+                   
                     console.log(item.id);
                     setModalVisible(true);
                     console.log(newid);
@@ -95,7 +113,7 @@ import Modal from '../../components/partials/Modal';
       </div>
       {modalVisible ? 
         <> 
-          <Modal visible={modalVisible} setVisible={setModalVisible} id={id} equipment={equipmentId}/>         
+          <Modal visible={modalVisible} setVisible={setModalVisible} id={id} equipment={equipmentId} onAdd={handleUpdateRent}/>         
         </>
       : ''}      
     </>
