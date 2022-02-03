@@ -33,7 +33,7 @@ const  Home = () => {
     <C.HomeArea>
       <div className='Container'>
         <div className='title-area'>
-          <h1>Surfboards Available</h1>
+          <h2>Surfboards Available</h2>
         </div>
           <div className="content-area" >
             {surfboards && surfboards.map((item, index) => (

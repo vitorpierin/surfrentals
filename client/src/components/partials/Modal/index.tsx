@@ -92,7 +92,7 @@ const Modal = (props: Props) => {
       <C.ModalArea>
        <C.InfoArea> 
         <C.InfoAreaRent>
-          <h3>Rent #{rent?.id} {rent?.finalizado ? <span> closed</span> : <span> open</span> }</h3>
+          {rent?.finalizado ? <h3 style={{color:"red"}}> Rent #{rent?.id} </h3> : <h3 style={{color:"darkgreen"}}> Rent #{rent?.id} </h3> }
           <div className="item-rent">
             <label>Name: </label>
             <span>{rent?.name}</span>
@@ -119,13 +119,13 @@ const Modal = (props: Props) => {
           </div>
           <div className="item-rent">
             <label>Paid: </label>
-            {rent?.paid ? <span>paid</span> : <input className="custom-control-input" onChange={handlePaidChange} id="paid" name="paid" type="checkbox"/>}
+            {rent?.paid ? <span style={{color:"green"}}>paid</span> : <input className="custom-control-input" style={{marginLeft:"8px"}} onChange={handlePaidChange} id="paid" name="paid" type="checkbox"/>}
           </div>  
           {rent?.finalizado ? 
           '' : 
           <div className="item-rent">
             <label>Close Rent: </label>
-            <input className="custom-control-input" onChange={handleFinalizadoChange} id="finalizado" name="finalizado" type="checkbox"/>
+            <input className="custom-control-input" style={{marginLeft:"8px"}} onChange={handleFinalizadoChange} id="finalizado" name="finalizado" type="checkbox"/>
           </div>}
         
         </C.InfoAreaRent>
@@ -145,7 +145,7 @@ const Modal = (props: Props) => {
         </C.InfoArea> 
         <C.Buttons>
           {rent?.finalizado ? '' : <C.BtnModalConfirm onClick={handleConfirmClick}>Confirm</C.BtnModalConfirm>}
-          <C.BtnModalClose onClick={handleModalClose}>Fechar</C.BtnModalClose>
+          <C.BtnModalClose onClick={handleModalClose}>Close</C.BtnModalClose>
         </C.Buttons> 
         
       </C.ModalArea>

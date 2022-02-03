@@ -42,6 +42,15 @@ import Modal from '../../components/partials/Modal';
       
     }
   }
+  const handleDelete = async (newid: any) => {
+    try {
+      console.log(`essa é a ID: ${newid}`)
+      let json = await api.deleteRent(newid);
+      console.log(json);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   
 
   /*const handleModal = (id: any) => {
@@ -55,10 +64,10 @@ import Modal from '../../components/partials/Modal';
   return(
     <>
       <div className="container">
-        <h2>Rentals</h2>
+        
         <C.TableArea >
-          
-          <table  className='table'>
+          <h2>Rentals</h2>
+          <table  className='table table-hover'>
           <thead>
             <tr>
               <th scope="col">ID</th>
@@ -100,13 +109,13 @@ import Modal from '../../components/partials/Modal';
                     setId(newid);
                     setEquipmentId(equipment);
                   }} /*style="color:white; border: none; background-color: transparent;"*/>+ info</button></td>
-                  {item.finalizado ?  <td>Rental Closed</td> : '' }
-                 
-                  
+                  {item.finalizado ?  <td className='finalizado-area' >Rental Closed</td> : <td className='open-area'>Open</td>}
+                  {item.finalizado ? <td><button className='btn-delete' onClick={() => {
+                    let newid = item.id;
+                    handleDelete(newid);
+                  }}>Delete</button></td> : ''}
                 </tr>
-               
             </tbody>
-            
           ))}
           </table>
         </C.TableArea >

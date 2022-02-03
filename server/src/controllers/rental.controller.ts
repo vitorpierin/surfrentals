@@ -137,9 +137,18 @@ export const remove = async (req: Request, res: Response) => {
     let id: string = req.params.id;
    
     let rent = await Rental.findByPk(id);
+    let equipment = rent?.equipment
+    let surfboard = await Surfboard.findByPk(equipment);
 
+
+
+    console.log(`Equipment ID: ${surfboard?.id}`);
     if(rent){
         await rent.destroy();
+    }
+    if(surfboard){
+        surfboard.available = true;
+        surfboard.save();
     }
     res.json({});
 }

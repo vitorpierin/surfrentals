@@ -9,8 +9,12 @@ export const HomeArea = styled.div`
     font-size: 20px;
     text-shadow: 0px 0px 2px #c3c3c3;
     letter-spacing: 8px;
-    h1{
-      font-size: 30px;
+    h2{
+      text-align: center;
+      color: #333;
+      text-shadow: 1px 1px 1px #555;
+      letter-spacing: 8px;
+      font-weight: 100;
     }
   }
   .content-area{

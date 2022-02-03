@@ -88,6 +88,15 @@ export const api = {
       console.log('nao deu certo');
       console.log(error);
     }
+  },
+  deleteRent: async (id: string) => {
+    try {
+      console.log(`ESSA É A ID: ${id} `)
+      let response = await http.delete(`/rental/${id}`);
+      return response.data;  
+    } catch (error) {
+        console.log(error); 
+    }
   }
 }
 

@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
 export const TableArea = styled.div`
-  background: linear-gradient(10deg, rgba(2,0,36,1) 0%, rgba(0,0,0,0.9528186274509804) 0%, rgba(0,212,255,1) 100%);
-  border-radius: 20px;
+
   h2{
     text-align: center;
-    color: rgb(255, 102, 0);
+    color: #333;
     text-shadow: 1px 1px 1px #555;
     letter-spacing: 8px;
-    font-weight: bold;
+    font-weight: 100;
     
   }
   table{
@@ -16,23 +15,21 @@ export const TableArea = styled.div`
     
   }
   td{
+    align-self: center;
     text-align:center;
-    color: #f1f1f1; 
+    color: #666; 
     font-size: 12px; 
-    text-shadow: 1px 1px 1px #999;
-  
+    font-weight: bold;
   }
   tr{
     text-align:center;
     color: #f1f1f1;
-    text-shadow: 1px 1px 1px #999;
    
   }
 
 
   th{
-    color: rgb(255, 102, 0);
-    text-shadow: 0px 0px 2px #000;
+    color: #333;
     text-align:center;
     font-size: 14px;
 }
@@ -51,9 +48,21 @@ export const TableArea = styled.div`
   .btn-info{
    border:none;
    background-color: transparent;
-   color:#fff;
+   color:rgb(255, 102, 0);
    font-weight:bold;
    width:50px;
+  }
+  .finalizado-area{
+    color: #999;
+  }
+  .open-area{
+    color: darkgreen;
+  }
+  .btn-delete{
+    color: red;
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
   }
 `;
 export const BtnModalClose = styled.button`

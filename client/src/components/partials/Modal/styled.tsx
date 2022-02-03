@@ -19,7 +19,7 @@ export const ModalArea = styled.div`
   box-shadow: 0px 0px 3px #c3c3c3;
   display:flex;
   flex-direction:column;
-  justify-content: space-between;
+  justify-content: space-around;
   background:linear-gradient(10deg, rgba(2,0,36,1) 0%, rgba(0,0,0,0.9528186274509804) 0%, rgba(0,212,255,1) 100%);
   padding: 30px;
   color:#f1f1f1;
@@ -40,7 +40,7 @@ export const ModalArea = styled.div`
     justify-content: flex-start;
     margin-top:8px;
     label{
-      color: rgb(255, 102, 0);
+      color: #f9f9f9;
       font-weight:bold;
       text-shadow: 1px 1px 1px #262626;
       letter-spacing: 1px;
@@ -81,14 +81,21 @@ export const Buttons = styled.div`
 `;
 
 export const BtnModalClose = styled.button`
-  align-self:center;
-  width: 80px;
-  height:30px;
-  background-color:transparent;
+  width: 100px;
+  padding: 5px 10px;
   border-radius: 5px;
-  color:rgb(255, 102, 0);
-  font-weight: bold;
+  background-color: darkred;
+  border: none;
+  font-weight: 600;
+  color: #fff;
+  margin-left: 20px;
 `;
 export const BtnModalConfirm = styled.button`
-
+  width: 100px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: darkgreen;
+  border: none;
+  font-weight: 600;
+  color: #fff;
 `;
